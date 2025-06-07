@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Application
+spec:
+  services:
+    - name: ServiceB
+      ports:
+        - targetPort: 18081
+          protocol: http
+      healthCheck:
+        path: /health
+

@@ -1,4 +1,4 @@
-package com.tsf.demo.consumer;
+package com.tsf.demo.consumer.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import javax.annotation.Resource;
