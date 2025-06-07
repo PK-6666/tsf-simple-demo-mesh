@@ -25,7 +25,7 @@ public class TraceHeadersUtil {
         traceHeaders.add("TEST_TAG");
         traceHeaders.add("test{1}a");
         traceHeaders.add("te*st");
-        traceHeaders.add("tsf-mesh-tag");
+        traceHeaders.add("tsf-ServiceA-tag");
     }
 
     public HttpHeaders buildTraceHeaders(HttpServletRequest request) {
