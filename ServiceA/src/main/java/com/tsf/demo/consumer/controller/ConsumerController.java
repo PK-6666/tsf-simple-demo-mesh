@@ -1,0 +1,42 @@
+package com.tsf.demo.consumer.controller;
+
+import com.alibaba.fastjson.JSONObject;
+import com.tsf.demo.consumer.utils.TraceHeadersUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+
+@RestController
+public class ConsumerController {
+    private static final Logger LOG = LoggerFactory.getLogger(ConsumerController.class);
+
+    @Autowired
+    private RestTemplate restTemplate;
+    @GetMapping({"/echo-rest/{param}"})
+    public Object restProvider(HttpServletRequest servletRequest, @PathVariable String param) {
+        LOG.info("ServiceA echo-rest request, str:{}",param);
+        try {
+            HttpHeaders headers = (new TraceHeadersUtil()).buildTraceHeaders(servletRequest);
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            headers.set("x-trace-service", "ServiceA");
+            HttpEntity<String> requestEntity = new HttpEntity(null, headers);
+            ResponseEntity<JSONObject> response = this.restTemplate.exchange("http://ServiceB/echo/" + param, HttpMethod.GET, requestEntity, JSONObject.class, new Object[0]);
+            return response.getBody().toJSONString();
+        } catch (Exception ex) {
+            LOG.error("access ServiceB service err", ex);
+            return "访问ServiceB服务异常";
+        }
+    }
+
+}
