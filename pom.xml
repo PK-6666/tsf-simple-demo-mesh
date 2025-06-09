@@ -16,7 +16,6 @@
     <modules>
         <module>ServiceB</module>
         <module>ServiceA</module>
-        <module>SCG</module>
     </modules>
 
     <properties>

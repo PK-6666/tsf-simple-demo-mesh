@@ -22,16 +22,16 @@ public class ConsumerController {
 
     @Autowired
     private RestTemplate restTemplate;
-    @GetMapping({"/echo-rest/{param}"})
-    public String restProvider(HttpServletRequest servletRequest, @PathVariable String param) {
-        LOG.info("ServiceA echo-rest request, str:{}",param);
+    @GetMapping({"/echo-rest"})
+    public String restProvider(HttpServletRequest servletRequest) {
+        LOG.info("ServiceA2 echo-rest request");
         try {
             HttpHeaders headers = (new TraceHeadersUtil()).buildTraceHeaders(servletRequest);
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
             headers.set("x-trace-service", "ServiceA");
             HttpEntity<String> requestEntity = new HttpEntity(null, headers);
-            ResponseEntity<String> response = this.restTemplate.exchange("http://ServiceB/echo/" + param, HttpMethod.GET, requestEntity, String.class);
+            ResponseEntity<String> response = this.restTemplate.exchange("http://ServiceB/echo" , HttpMethod.GET, requestEntity, String.class);
             return response.getBody();
         } catch (Exception ex) {
             LOG.error("access ServiceB service err", ex);
