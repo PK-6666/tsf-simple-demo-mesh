@@ -1,9 +1,8 @@
 #!/bin/bash
 
-already_run=`ps -ef|grep "ServiceB-1.46.17-SpringCloud2021-RELEASE"|grep -v grep|wc -l`
-if [ ${already_run} -ne 0 ];then
-	echo "ServiceB already Running!!!! Stop it first"
-	exit -1
-fi
+mkdir -p /opt/tsf/app_config/apis
+cp /root/app/ServiceB/spec.yaml /opt/tsf/app_config/
+cp -r /root/app/ServiceB/apis /opt/tsf/app_config/
+cd /root/app/ServiceB/
 
-nohup java -jar ServiceB-1.46.17-SpringCloud2021-RELEASE.jar  1>stdout.log 2>&1 &
+java -jar ServiceB-1.46.17-SpringCloud2021-RELEASE.jar

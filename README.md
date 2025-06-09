@@ -6,6 +6,8 @@
 | ServiceA |TSF微服务治理服务消费者|
 | ServiceB |TSF微服务治理服务提供者|
 
+使用如下命令生成 ServiceB.tar.gz
+tar -czvf ServiceB.tar.gz ServiceB 
 
 ## 依赖说明
 
