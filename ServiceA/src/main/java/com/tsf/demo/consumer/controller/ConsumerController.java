@@ -23,7 +23,7 @@ public class ConsumerController {
     @Autowired
     private RestTemplate restTemplate;
     @GetMapping({"/echo-rest/{param}"})
-    public Object restProvider(HttpServletRequest servletRequest, @PathVariable String param) {
+    public String restProvider(HttpServletRequest servletRequest, @PathVariable String param) {
         LOG.info("ServiceA echo-rest request, str:{}",param);
         try {
             HttpHeaders headers = (new TraceHeadersUtil()).buildTraceHeaders(servletRequest);
@@ -31,8 +31,8 @@ public class ConsumerController {
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
             headers.set("x-trace-service", "ServiceA");
             HttpEntity<String> requestEntity = new HttpEntity(null, headers);
-            ResponseEntity<JSONObject> response = this.restTemplate.exchange("http://ServiceB/echo/" + param, HttpMethod.GET, requestEntity, JSONObject.class, new Object[0]);
-            return response.getBody().toJSONString();
+            ResponseEntity<String> response = this.restTemplate.exchange("http://ServiceB/echo/" + param, HttpMethod.GET, requestEntity, String.class);
+            return response.getBody();
         } catch (Exception ex) {
             LOG.error("access ServiceB service err", ex);
             return "访问ServiceB服务异常";
