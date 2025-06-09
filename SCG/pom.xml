@@ -19,5 +19,11 @@
             <artifactId>spring-cloud-tsf-msgw-scg</artifactId>
             <version>${tsf.version}</version>
         </dependency>
+        <!-- TSF 启动器 -->
+        <dependency>
+            <groupId>com.tencent.tsf</groupId>
+            <artifactId>spring-cloud-tsf-starter</artifactId>
+            <version>${tsf.version}</version>
+        </dependency>
     </dependencies>
 </project>

@@ -6,9 +6,9 @@
 | ServiceA |TSF微服务治理服务消费者|
 | ServiceB |TSF微服务治理服务提供者|
 
-使用如下命令生成 ServiceB.tar.gz
-tar -czvf ServiceB.tar.gz ServiceB 
-
+进入到ServiceA-mesh或者是ServiceB-mesh目录，使用如下命令生成 ServiceA.tar.gz,ServiceB.tar.gz
+tar -czvf ServiceA.tar.gz ServiceA
+tar -czvf ServiceB.tar.gz ServiceB
 ## 依赖说明
 
 pom.xml 中定义了工程需要的依赖包（以下以基于 Spring Cloud 2021 版本 SDK 举例说明）：
