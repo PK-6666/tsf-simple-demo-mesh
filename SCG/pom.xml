@@ -30,7 +30,20 @@
             <artifactId>spring-cloud-tsf-msgw-scg</artifactId>
             <version>${tsf.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.tencent.tsf</groupId>
+            <artifactId>spring-cloud-tsf-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.tencent.tsf</groupId>
+                    <artifactId>spring-cloud-tsf-swagger</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
