@@ -12,7 +12,7 @@ RUN echo "Asia/Shanghai" > /etc/timezone
 ENV workdir /app/
 
 # 下面的 jar 包可替换为您的 Spring Cloud 应用 jar包，注意这个 jar 包要和您的 dockerfile 位于同一级目录
-ENV jar SCG-1.46.17-SpringCloud2021-RELEASE.jar
+ENV jar SCG-1.29.20-Finchley-RELEASE.jar
 COPY ${jar} ${workdir}
 WORKDIR ${workdir}
 
