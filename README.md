@@ -63,3 +63,9 @@ pom.xml 中定义了工程需要的依赖包（以下以基于 Spring Cloud 2021
         <version><!-- 调整为 SDK 最新版本号 --></version>
 </parent>
 ```
+
+@echo off
+:loop
+curl http://localhost:8080/scg/test-7-6/ServiceA/echo-rest
+timeout /t 1 >nul
+echo
